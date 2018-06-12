@@ -1,5 +1,7 @@
 # import dataset from local file
-library(data.table)
+library('data.table')
+library('e1070')
+library('graphics')
 
 #df <- read.csv('recipe.csv', header=TRUE)
 df<-fread("recipe.csv", header=TRUE)
@@ -132,6 +134,7 @@ cor(beer_y)
 cor(beer1, y, use="pairwise.complete.obs")
 
 # exploring missing value patterns
+library('mice')
 library("VIM")
 md.pattern(beer)
 aggr(beer, prop=FALSE, numbers=TRUE)
@@ -187,16 +190,30 @@ for(i in 1:nrow(df_beer))
 # check the summary of df_beer dataframe
 summary(df_beer)
 
-# remove MashThickness and M variable
-df_beer1 <- df_beer[,c(5:14, 16:18)]
+# remove MashThickness, M, and SIZE variable
+df_beer1 <- df_beer[,c(6:14, 16:18)]
 
 # use numeric features for kmeans
-df_beer2 <- df_beer1[,c(1:10, 13)]
+df_beer2 <- df_beer1[,c(1:9, 12)]
+
+# create a new column called BU_GU_Ratio that tells us how balanced the beer is
+BU_GU_Ratio <- ((df_beer2$IBU)/((df_beer2$OG*1000)-1000))
+BU_GU_Ratio <- round(BU_GU_Ratio, 3)
+df_beer2 <- cbind(df_beer2, BU_GU_Ratio)
+
+# replace infinate values of BU_GU_Ratio with "1.001"
+df_beer2$BU_GU_Ratio[is.infinite(df_beer2$BU_GU_Ratio)] <- 1.001
+
+# print str and summary for df_beer2 dataframe
+str(df_beer2)
 summary(df_beer2)
 
 # scale data for kmeans
 df_beer2_z <- as.data.frame(lapply(df_beer2, scale))
 summary(df_beer2_z)
+
+# do kmeans clustering
+library("cluster")
 
 # run kmeans, k = 5
 set.seed(123)
