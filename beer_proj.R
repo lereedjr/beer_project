@@ -136,3 +136,76 @@ library("VIM")
 md.pattern(beer)
 aggr(beer, prop=FALSE, numbers=TRUE)
 matrixplot(beer)
+
+# correlation matrix for complete observations
+cor(beer1, use="complete.obs")
+
+# create another dataset of beer to do imputations and replacements of missing values
+df_beer <- beer
+
+# replace missing values of Primary Temp with "-99"
+df_beer$PrimaryTemp[is.na(df_beer$PrimaryTemp)] <- -99
+df_beer$PrimaryTemp[df_beer$PrimaryTemp == -17.78] <- -99
+
+# since PitchRate is a factor convert to numeric to do replacement
+df_beer$PitchRate <- as.numeric(as.character(df_beer$PitchRate))
+
+# replace missing value of PitchRate with "-1"
+df_beer$PitchRate[is.na(df_beer$PitchRate)] <- -1
+
+# convert PitchRate back to factor
+df_beer$PitchRate <- as.factor(df_beer$PitchRate)
+
+# convert missing values of MashThickness to "-1"
+df_beer$MashThickness[is.na(df_beer$MashThickness)] <- -1
+
+# create a function that labels missing values for BoilGravity
+mis <- function(t)
+{
+  x <- dim(length(t))
+  x[which(!is.na(t))] = 1
+  x[which(is.na(t))] = 0
+  return(x)
+}
+
+# create binary column that denotes missing values
+df_beer$M <- mis(df_beer$BoilGravity)
+
+# simple linear function to impute missing values in BoilGravity
+bg_lm <- lm(BoilGravity~OG, data=df_beer)
+summary(bg_lm)
+
+# function to impute missing values for BoilGravity using simple linear function
+for(i in 1:nrow(df_beer))
+{
+  if(df_beer$M[i] == 0)
+  {
+    df_beer$BoilGravity[i] = 0.2773 + 0.7314*df_beer$OG[i]
+  }
+}
+
+# check the summary of df_beer dataframe
+summary(df_beer)
+
+# remove MashThickness and M variable
+df_beer1 <- df_beer[,c(5:14, 16:18)]
+
+# use numeric features for kmeans
+df_beer2 <- df_beer1[,c(1:10, 13)]
+summary(df_beer2)
+
+# scale data for kmeans
+df_beer2_z <- as.data.frame(lapply(df_beer2, scale))
+summary(df_beer2_z)
+
+# run kmeans, k = 5
+set.seed(123)
+df_beer2_cluster <- kmeans(df_beer2_z, 5, nstart = 20)
+df_beer2_cluster$centers
+df_beer2_cluster$size
+
+# run kmeans, k = 8
+set.seed(123)
+df_beer2_cluster2 <- kmeans(df_beer2_z, 8, nstart = 20)
+df_beer2_cluster2$centers
+df_beer2_cluster2$size
