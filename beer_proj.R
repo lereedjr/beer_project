@@ -192,9 +192,12 @@ summary(df_beer)
 
 # remove MashThickness, M, and SIZE variable
 df_beer1 <- df_beer[,c(6:14, 16:18)]
+df_beer1 <- df_beer1[,c(1:5, 7:12)]
 
 # use numeric features for kmeans
-df_beer2 <- df_beer1[,c(1:9, 12)]
+df_beer2 <- df_beer1[,c(1:8, 10:11)]
+df_beer2$PitchRate <- as.character(df_beer2$PitchRate)
+df_beer2$PitchRate <- as.numeric(df_beer2$PitchRate)
 
 # create a new column called BU_GU_Ratio that tells us how balanced the beer is
 BU_GU_Ratio <- ((df_beer2$IBU)/((df_beer2$OG*1000)-1000))
@@ -226,3 +229,23 @@ set.seed(123)
 df_beer2_cluster2 <- kmeans(df_beer2_z, 8, nstart = 20)
 df_beer2_cluster2$centers
 df_beer2_cluster2$size
+
+# create a dataframe with clusters
+cluster_num <- df_beer2_cluster2$cluster
+beer_cluster <- cbind(df_beer, cluster_num)
+
+# set cluster column as factor
+beer_cluster$cluster_num <- as.factor(beer_cluster$cluster_num)
+
+# subsets for clusters
+clust1 <- subset(beer_cluster, cluster_num==1)
+clust2 <- subset(beer_cluster, cluster_num==2)
+clust3 <- subset(beer_cluster, cluster_num==3)
+clust4 <- subset(beer_cluster, cluster_num==4)
+clust5 <- subset(beer_cluster, cluster_num==5)
+clust6 <- subset(beer_cluster, cluster_num==6)
+clust7 <- subset(beer_cluster, cluster_num==7)
+clust8 <- subset(beer_cluster, cluster_num==8)
+
+# export csv file with file encoding "UTF-8" and Row Names equals "False"
+#write.csv(df_beer2, 'beer_cluster3.csv', fileEncoding = "UTF-8", row.names = FALSE)
