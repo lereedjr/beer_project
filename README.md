@@ -57,6 +57,9 @@ After reducing the number of features from 23 to 8, I decided to calculate for a
 
 ![missing2_plot](https://user-images.githubusercontent.com/36432832/42035899-3f43afa4-7aa1-11e8-9e94-9de86f5800e5.png)
 
+### K-Means
+I now had 9 solid features to do K-Means. The features that I was left with were ABV, IBU, Color, OG, FG, Efficiency, BoilTime, BoilGravity, and BU/GU Ratio. I went ahead and scaled the data to give every feature a fair chance. I used a set seed to "123", and nstart equal to 20. I had initially experimented with 5 and 8 clusters, but decided that 6 clusters was optimal to analyze the 176 different styles of beer. As I ran K-Means and analyzed the results I realize that the algorithmn had done a terrific in segmenting 63K observations with very little effort. As you will see down bellow, you can conclude that cluster 1 is know for its light beers, cluster 2 for its strong and bitter beers, cluster 3 is very similar to cluster 1 but its higher BoilTimes allow for a more flavorful beer. Cluster 4 is in the perfect zone as it is not too light or strong in terms of ABV or IBU. Cluster 5 is all over the place, and cluster 6 is my favorite as it houses most of Indian Pale Ale's (IPA's) which are know for their Hopps and Balance. 
+
 
 ### Conclusion
 
