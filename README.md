@@ -70,5 +70,31 @@ I now had 9 solid features to do K-Means. The features that I was left with were
 
 
 ### Conclusion
+Before this project my idea about beers, was that they all tasted the same. The craft beer industry is another world full of aventures, tastes, aromas, feels, senses, and ingredients. The sky is the limit as to what a person can brew. I am honored and humbled to have been part of this great project. I can now say that I know what ABV and IBU mean.
+
+### References
+https://www.brewersfriend.com
+
+https://www.thespruceeats.com/alcohol-by-volume-353204
+
+https://munchies.vice.com/en_us/article/wn7g75/this-ipa-is-the-most-bitter-beer-in-the-world
+
+http://www.cliffsnotesbeerguide.com/color/
+
+http://beersmith.com/blog/2009/09/26/balancing-your-beer-with-the-bitterness-ratio/
+
+https://www.craftbeer.com
+
+https://www.statmethods.net/advstats/cluster.html
+
+https://www.rdocumentation.org/packages/stats/versions/3.5.0/topics/kmeans
+
+https://www.r-bloggers.com/missing-value-treatment/
+
+https://www.statmethods.net/input/missingdata.html
+
+https://www.youtube.com/watch?v=7FyYe1LG1Zs
+
+
 
 
