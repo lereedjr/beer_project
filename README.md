@@ -2,11 +2,11 @@
 Over 70K beer recipes
 download the data from https://www.kaggle.com/jtrofe/beer-recipes/data
 
-by Saul Tamariz, June 2018
-MSDS692-Final Project
-
+# by Saul Tamariz, June 2018
+# MSDS692-Final Project
 # Understanding Different Styles of Beer
 
+
 # Description
-# This dataset contained 73861 observations and 23 variables. 
+This dataset contained 73861 observations and 23 variables. 
 
