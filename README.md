@@ -1,4 +1,4 @@
-# beer_project
+# Beer_Project
 Over 70K beer recipes
 download the data from https://www.kaggle.com/jtrofe/beer-recipes/data
 
@@ -8,5 +8,6 @@ download the data from https://www.kaggle.com/jtrofe/beer-recipes/data
 
 
 # Description
-This dataset contained 73861 observations and 23 variables. 
+This dataset contained 73861 observations, and 23 variables of quantitative qualities of beer recipees.  
+
 
