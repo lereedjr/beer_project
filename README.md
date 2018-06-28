@@ -55,6 +55,8 @@ After reducing the number of features from 23 to 8, I decided to calculate for a
 
 ![function](https://user-images.githubusercontent.com/36432832/42035786-fb1956e4-7aa0-11e8-86c0-e0cacf776f5e.png)
 
+![missing2_plot](https://user-images.githubusercontent.com/36432832/42035899-3f43afa4-7aa1-11e8-9e94-9de86f5800e5.png)
+
 
 ### Conclusion
 
