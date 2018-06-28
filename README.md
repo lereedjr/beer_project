@@ -64,6 +64,8 @@ I now had 9 solid features to do K-Means. The features that I was left with were
 
 ![bugur_og_clusters_plot](https://user-images.githubusercontent.com/36432832/42036698-84075bc0-7aa3-11e8-8426-65a2e816b613.png)
 
+![boiltime_og_clusters_plot](https://user-images.githubusercontent.com/36432832/42036778-c06b252e-7aa3-11e8-9851-19a69422f64d.png)
+
 
 
 
