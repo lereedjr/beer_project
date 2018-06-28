@@ -47,7 +47,8 @@ desity distribution curve most beers fall right around or bellow 6 ABV. Internat
 
 ![ibu_density_plot](https://user-images.githubusercontent.com/36432832/42034795-615da0b6-7a9e-11e8-9da5-9e6b61e23792.png)
 
-### 
+![boiltime_hist](https://user-images.githubusercontent.com/36432832/42034900-b2034ee4-7a9e-11e8-89c1-aaed5298c7c8.png)
+
 
 ### Analysis
 
