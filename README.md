@@ -66,7 +66,7 @@ I now had 9 solid features to do K-Means. The features that I was left with were
 
 ![boiltime_og_clusters_plot](https://user-images.githubusercontent.com/36432832/42036778-c06b252e-7aa3-11e8-9851-19a69422f64d.png)
 
-
+![compare](https://user-images.githubusercontent.com/36432832/42036839-f5da1968-7aa3-11e8-83f9-d8adcdeaec97.png)
 
 
 ### Conclusion
