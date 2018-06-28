@@ -50,7 +50,9 @@ desity distribution curve most beers fall right around or bellow 6 ABV. Internat
 ![boiltime_hist](https://user-images.githubusercontent.com/36432832/42034900-b2034ee4-7a9e-11e8-89c1-aaed5298c7c8.png)
 
 
-### Analysis
+### Missing Values & Preparing Dataset
+After reducing the number of features from 23 to 8, I decided to calculate for a feature that was not included in the dataset. The Bitterness to Gravity Ratio tells us how balanced a beer is relative to its amounts of sugars and bitterness level. To calculate for Bitterness to Gravity Ratio(BU/GU Ratio), all you need is to have OG and IBU. Therefore, I decided to create a new vector that contained BU/GU Ratio and attached it the preparation dataset. I then proceeded to use linear regression to fill in for the 1585 missing values in BoilGravity. Since BoilGravity and OG have a strong correlation of 0.80, I decided to write a function that would fill in for that missing value. Down bellow is small sample of the function and code. 
+
 
 
 ### Conclusion
