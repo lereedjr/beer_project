@@ -56,7 +56,8 @@ summary(dfs)
 library(ggplot2)
 
 # scatterplot using ggplot2 of "abv", "ibu", and "color
-abv_ibu_gg <- ggplot(dfs, aes(x=ABV, y=IBU, color=Color)) + geom_point() + labs(title="Scatterplot", x="ABV", y="IBU") 
+abv_ibu_gg <- ggplot(dfs, aes(x=ABV, y=IBU, color=Color))
++ geom_point() + labs(title="Scatterplot", x="ABV", y="IBU") 
 print(abv_ibu_gg)
 
 # understanding "PrimingMethod" feature 
@@ -110,9 +111,8 @@ summary(brew_partial)
 prim_temp_qplot <- qplot(Efficiency, PrimaryTemp , color=BrewMethod, data=beer)
 print(prim_temp_qplot)
 
-# ABV density distribution curve
-mash_density <- qplot(MashThickness, data=brew_allgrain, geom="density", alpha=I(.5), 
-                      main="MashThickness Density Distribution", xlab="MashThickness", ylab="Density")
+# Mash density distribution curve
+mash_density <- qplot(MashThickness, data=brew_allgrain, geom="density") + xlim(0,10)
 print(mash_density)
 
 # dataframe for numeric features only 
@@ -249,3 +249,50 @@ clust8 <- subset(beer_cluster, cluster_num==8)
 
 # export csv file with file encoding "UTF-8" and Row Names equals "False"
 #write.csv(df_beer2, 'beer_cluster3.csv', fileEncoding = "UTF-8", row.names = FALSE)
+
+# use numeric features for kmeans
+df_beer3 <- df_beer2[,c(1:8, 11)]
+
+# scale data for kmeans
+df_beer3_z <- as.data.frame(lapply(df_beer3, scale))
+
+# run kmeans, k = 6
+set.seed(123)
+df_beer3_cluster3 <- kmeans(df_beer3_z, 6, nstart = 20)
+df_beer3_cluster3$centers
+df_beer3_cluster3$size
+
+# create a dataframe with clusters
+cluster_num1 <- df_beer3_cluster3$cluster
+beer_cluster1 <- cbind(df_beer, cluster_num1)
+bu_gu <- df_beer3$BU_GU_Ratio
+beer_cluster2 <- cbind(beer_cluster1, bu_gu)
+
+# set cluster column as factor
+beer_cluster2$cluster_num1 <- as.factor(beer_cluster2$cluster_num1)
+
+# subsets for clusters
+cluster1 <- subset(beer_cluster2, cluster_num1==1)
+cluster2 <- subset(beer_cluster2, cluster_num1==2)
+cluster3 <- subset(beer_cluster2, cluster_num1==3)
+cluster4 <- subset(beer_cluster2, cluster_num1==4)
+cluster5 <- subset(beer_cluster2, cluster_num1==5)
+cluster6 <- subset(beer_cluster2, cluster_num1==6)
+
+# visualizations for clusters
+qplot(beer_cluster2$ABV, beer_cluster2$IBU, col=beer_cluster2$cluster_num1, 
+      xlab = 'ABV', ylab = 'IBU', main = 'ABV vs IBU by Clusters')
+qplot(beer_cluster2$bu_gu, beer_cluster2$Color, col=beer_cluster2$cluster_num1,
+      xlab = 'BU/GU Ratio', ylab = 'Color', main = 'BU/GU Ratio vs Color by Clustetrs')
+qplot(beer_cluster2$Efficiency, beer_cluster2$Color, col=beer_cluster2$cluster_num1,
+      xlab = 'Efficiency', ylab = 'Color', main = 'Efficiency vs Color by Clusters')
+qplot(beer_cluster2$BoilTime, beer_cluster2$BoilGravity, col=beer_cluster2$cluster_num1,
+      xlab = 'BoilTime', ylab = 'BoilGravity', main = 'BoilTime vs BoilGravity by Clusters')
+qplot(beer_cluster2$BoilTime, beer_cluster2$OG, col=beer_cluster2$cluster_num1,
+      xlab = 'BoilTime', ylab = 'OG', main = 'BoilTime vs OG by Clusters')
+qplot(beer_cluster2$bu_gu, beer_cluster2$OG, col=beer_cluster2$cluster_num1,
+      xlab = 'BU/GU Ratio', ylab = 'OG', main = 'BU/GU Ratio vs OG by Clustetrs')
+
+
+
+
