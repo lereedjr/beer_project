@@ -12,10 +12,10 @@ MSDS692-Final Project
 Beer has been around for a very long time. Ever since the begining of civilization people have been brewing away and comming up with new ways to make good beer. For this project I will attempt to understand the quantitative qualities of beer. I have decided to download 73861 beer quantitative observations and 23 distinct features. I will attempt to trim and categorize the 176 styles of beer in this dataset. The goal will be to use data science as a tool to uncover what people are brewing and how they like their beer. 
 
 # Features
-BeerID - ID index for each beer recipe 
-Name - Beer Name
-URL - Beer url link to the homebrew website
-Style - Style name (176 Total)
+*BeerID - ID index for each beer recipe
+*Name - Beer Name
+*URL - Beer url link to the homebrew website
+*Style - Style name (176 Total)
 StyleID - Style unique ID (176 Total)
 Size(L) - Size in terms of liters 
 OG - Original Gravity (metric & plato)
